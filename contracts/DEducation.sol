@@ -29,7 +29,7 @@ contract DEducation is ERC2771Context {
         string memory _classroom,
         string memory _hashcode
     ) public {
-        TranscriptForClass[msg.sender][_classroom] = _hashcode;
+        TranscriptForClass[_msgSender()][_classroom] = _hashcode;
         emit AddNewTranscriptForClass(_classroom, _hashcode);
     }
 
@@ -38,7 +38,7 @@ contract DEducation is ERC2771Context {
     ) public {
         for (uint256 i = 0; i < _studentTranscripts.length; i++) {
             StudentTranscript memory studentTranscript = _studentTranscripts[i];
-            TranscriptForStudents[msg.sender][studentTranscript.StudentAddress][
+            TranscriptForStudents[_msgSender()][studentTranscript.StudentAddress][
                 studentTranscript.Classroom
             ] = studentTranscript.HashCode;
         }
